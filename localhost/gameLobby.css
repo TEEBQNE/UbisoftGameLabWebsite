@@ -1,0 +1,63 @@
+/* makes the iframe fit to the size of the screen*/
+iframe {
+  border: 0;
+  height: 35%;
+  width: 100%;
+  position:fixed;
+  top: 0px;
+  left: 0px;
+}
+
+.holder
+{
+	height: 35%;
+}
+
+#notificationHolder
+{
+	width: 100vw;
+	display: inline-block;
+	text-align: center;
+	vertical-align: center;
+	 user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+}
+
+.notificationText
+{
+	display: inline-block;
+    position:absolute; 
+    width: 70vw;
+    word-wrap: break-word;
+    z-index:999;
+    background-color: white;
+    color: red;
+    top: 5vh;
+    left: 15%;
+}
+
+.moneyNotificationText
+{
+	display: inline-block;
+    position:absolute; 
+    width: 70vw;
+    word-wrap: break-word;
+    z-index:999;
+    background-color: green;
+    color: white;
+    top: 5vh;
+    left: 15%;
+}
+
+.fadeClass
+{
+	animation: fadeout 1.5s forwards;
+}
+
+@keyframes fadeout {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}

@@ -1,0 +1,256 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10720\viewh14520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 To run the server locally, you will need to download a few things: \
+\
+**
+\b NOTE: Download the 64-bit version of these files unless your system is 32-bit
+\b0 \
+\
+Apache {\field{\*\fldinst{HYPERLINK "http://www.apachelounge.com/download"}}{\fldrslt www.apachelounge.com/download}}\
+\
+Visual studios 2017  {\field{\*\fldinst{HYPERLINK "https://support.microsoft.com/en-ca/help/2977003/the-latest-supported-visual-c-downloads"}}{\fldrslt https://support.microsoft.com/en-ca/help/2977003/the-latest-supported-visual-c-downloads}}\
+\
+PHP 7 {\field{\*\fldinst{HYPERLINK "http://windows.php.net/download"}}{\fldrslt windows.php.net/download}} (newest version threaded)\
+\
+MySQL {\field{\*\fldinst{HYPERLINK "https://dev.mysql.com/downloads/installer/"}}{\fldrslt https://dev.mysql.com/downloads/installer/}} (mysqli-installer-web-community file - - it says 32 bit, but both 32 and 64 bit binaries download with the install)\
+\
+PhpMyAdmin {\field{\*\fldinst{HYPERLINK "https://www.phpmyadmin.net/downloads/"}}{\fldrslt https://www.phpmyadmin.net/downloads/}}\
+\
+\
+First, install mySQL. Click the mysqli-installer-community<VERSION>.msi. Once open, follow these steps. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\b \cf0 \ul \ulc0 NOTE:
+\b0 \ulnone  Most of the steps just hit next unless I specified otherwise. There are only a few changes that need to be made to the base install\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 Accept the license terms\
+Select, \'91Server Only\'92\
+Install it\
+For the Config Type, select \'91Server Computer\'92\
+Enter a password for the root user (REMEMBER THIS PASSWORD)\
+Hit next until finished\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Now mySQL is installed! Now to test the installation.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf0 \ul NOTE:
+\b0 \ulnone  I will denote when you need to hit the enter key with [ENTER]\
+
+\b \ul NOTE:
+\b0 \ulnone  You can also autocomplete the words you are spelling by hitting the tab key\
+
+\b \ul NOTE:
+\b0 \ulnone  Whenever running the command prompt application, run it as administrator by rick clicking and selecting \'91run as adminstrator\'92 \
+\
+Next, open the command prompt application then type:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 cd\\[ENTER]\
+cd \'93Program Files\\MySQL\\MySQL Server 8.0\\bin\'94[ENTER]\
+mysqli.exe -u root -p[ENTER]\
+MySQL will now prompt for your password that you created in the setup. Type that in, then hit the enter key.\
+\
+To exit the mysql server, simply type:\
+\
+exit[ENTER]\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Next, start to install the apache server file. Open the httpd-2.4.XX-win64-VC15 (Where XX is whatever version apache is currently on). Once the file is extracted, copy the entire Apache24 folder into your C drive directory. \
+\
+Again, open the command prompt application and type:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 cd\\[ENTER]\
+\strike \strikec0 setx path \'93%PATH%C:\\Apache24;C:\\Apache24\\bin;C:\\php\'94/M[ENTER]\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 \strike0\striked0 The above does not work in Windows 10. Instead, go to settings, then find environment variables, then click:\
+\
+Edit the system environment variables\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 Environment variables\'85\
+Once here, edit the variable Path in both global and local space\
+Select the path variable, then hit edit, then hit new then type in:\
+\
+C:\\Apache24\
+C:\\Apache24\\bin\
+C:\\PHP\
+\
+Remember to add this to both the local and global instance (There are two Path variables. One for your user and one for ALL users. Change both)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Close that page, now go to the file httpd which is located in C:/Apache24/conf (You can open it with notepad++ or notepad)\
+\
+When open, find ServerName and replace the line as follows:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 ServerName localhost:80\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Then find the line:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 AllowOverride controls what directives\'85\
+And change the line AllowOverride None to AllowOverride All\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Next, fine the line:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 #LoadModule rewrite_module modules/mod_rewrite.so and delete the #\
+#LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so and delete the #\
+#LoadModule proxy_module modules/mod_proxy.so and delete the #\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Save and close the final. Now, go back to the command prompt window and type:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 cd/[ENTER]\
+cd Apache24[ENTER]\
+cd bin[ENTER]\
+httpd -k install[ENTER]\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Follow the installation process, and once you are done, Apache is now installed! To test if it installed correctly, type:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 httpd -s\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Now go to C:/Apache24/bin and open the exe \'91ApacheMonitor.exe\'92. Once you do this, a smaller icon will appear in your task bar not the bottom of your computer. Click it, then click the \'91start\'92 button. This will start your apache server. Similarly, to stop or restart the server, go back to that icon and hit the stop/restart button respectively. \
+\
+With that done, now go to C:/Apache24/htdocs and open index.html. When opening it, if everything so far is setup correctly, you will be brought to a page that shows \'91It works!\'92. This is just a verification that your apache server is live and working. Similarly, you can go to the URL: localhost and the same page will show up. \
+\
+Now that we know Apache works, unzip the php zip file. Once that is done, copy all of its contents into the C: drive folder in a new folder you make called PHP. \
+\
+Once it is renamed, go into the folder and look for php-ini-development. rename it to php.ini. \
+\
+With this done, go back to C:/Apache24/conf and open httpd.conf again with notepad or notepad++. Then, at the bottom off the document, add these lines:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 PHPIniDir \'93C:/PHP\'94[ENTER]\
+AddHandler application/x-httpd-php. php[ENTER]\
+LoadModule php7_module \'93C:/PHP/php7apache2_4.dll\'94[ENTER]\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Save the changes, then find the the word:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 index.html \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+And replace it with:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 index.php\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 With that done, save it again and close the file. Now to test if the php is configured correctly, go to the file located in C:/Apache24/htdocs and open index.html with notepad. Then edit it so that it reads:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 <html><body><?phpinfo()?></body></html>\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 When done, hit file, then save as. Save the file as index.php instead of index. With this done, you will need to restart the apache server to make the config file changes take effect. Do so by opening the command prompt and typing:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 cd/[ENTER]\
+cd Apache24[ENTER]\
+cd bin[ENTER]\
+httpd -k restart\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 When you go to localhost or drag in the index.php file, it should show a lot of information regarding your php install. If you do not see this, something is wrong with the configuration. Here are some quick tips that could get you on the right track:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 Your path is setup incorrectly. You might need to manually add them to the environment path file. To do this, go to settings, search for environment variables, the click on the path variable, then hit edit, new, then add each manually to the list. Restart the server after.\
+\
+Make sure all words typed into the config files are character for character the same\
+\
+Make sure you added the index.php to the config\
+\
+Make sure you uncommented the right modules\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 After confirming everything is set up correctly, move onto installing phpmyadmin. To do this, open the zip, then rename the entire file to phpMyAdmin, then drag the folder C:/Apache24/htdocs\
+\
+Go into the folder, and rename a file called config.sample.inc to config.inc. Once that is done, go back to the PHP folder. Find the file you renamed to php.ini and open it to edit it.\
+\
+While in the folder, find and remove the semi-colon from:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 ;extension_dir = \'93ext\'94 (Also change this to extension_dir = \'93C:/PHP/ext\'94)\
+;extension=mbstring\
+;extension=mysqli\
+;extension=curl (If it does not work, add the ; back to this one)\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Safe this file, then close it. Then go back to the command prompt, and type:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 cd/[ENTER]\
+cd apache24[ENTER]\
+cd bin[ENTER]\
+httpd -k restart[ENTER]\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 As well, go to the apache icon on the bottom right of the task part and restart the server there too. Once this is done, phpMyAdmin is setup!\
+\
+To test to see if it is setup correctly, go to a web browser and type in:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 http://localhost/phpmyadmin\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 If it is setup correctly, you should be greeted with a login page for phpmyadmin. Do not try to login quite yet, there is another part you need to setup in order to link your mySQL login to this portal. If there is an error specifying that the mysqli extension is missing, check back in the localhost page and see if the \'91Loaded Configuration File\'92 is set to (none). If it is, give up, it is not worth it. If it is set to PHP/php.ini or something similar, there is probably just an issue with your environment variables, you need to re-commend the curl extension or a few other issues that might have caused it. \
+\
+Once that is all done, go back to the command prompt app and type:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 cd\\[ENTER]\
+cd \'93Program Files\\MySQL Server 8.0\\bin\'94[ENTER]\
+mysqli.exe -u root -p[ENTER]\
+Then enter the password for the mySQL root account you made earlier\
+ALTER USER \'91root\'92@\'91localhost\'92 IDENTIFIED WITH mysql_native_password BY \'91EnterYourPasswordHere\'92;[ENTER]\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Once this is done, go back to localhost/phpmyadmin and login with the user as root and the password as the one you just entered in the console. If everything worked, you should now be logged into phpmyadmin! After this, you will need to import the server\'92s mySQL table that I had exported for you. To do this first create a database by clicking the \'91New\'92 button, then naming the database:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 mydatabase\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+After this, go to the tab \'91Import\'92, then click \'91Choose File\'92, then click \'91Open\'92. Once this is done, click the \'91Go\'92 button. Now the mySQL table is setup.\
+\
+With this done, go to the websiteFinal.zip and extract the files. Drag this folder into C:/Apache24/htdocs. Go into this folder and find the database.php file. Change the line yourPasswordHere to the login for your mySQL database. To start the server, go back to the command prompt, and type:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 cd/[ENTER]\
+cd Apache24[ENTER]\
+cd htdocs[ENTER]\
+cd server[ENTER]\
+php websocket_server.php[ENTER]\
+\
+Now the server is up and running! To stop it, hit Ctrl C. With that, the entire server is setup and ready to go! To have people connect to you, use a URL such as:\
+\
+http://yourIPHere/~yourUsernameHere/websiteFinal/index.php\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 If you can access localhost/websiteFinal/index.php without a username in between such as the above URL example, then edit the $localUsername variable to just be \'93\'94 as you do not need this. As well, people should be able to access your server instance with a URL such as:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 \
+http://yourIPHere/websiteFinal/index.php\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+If you are having issues letting other\'92s connect, try turning off your firewall. Also make sure that they are on the same wifi connection as your computer.}

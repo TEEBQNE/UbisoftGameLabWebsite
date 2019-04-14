@@ -1,0 +1,22 @@
+html, body {margin: 0; height: 100%; overflow: hidden}
+
+.gameLobby
+{
+	height: 35%;
+}
+
+.streamUI
+{
+	height: 5%;
+	background-color:gray;
+}
+
+.chat
+{
+	height: 60%;
+}
+
+.emoteTab
+{
+	height: 60%;
+}

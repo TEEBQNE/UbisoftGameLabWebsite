@@ -1,0 +1,431 @@
+<?php
+session_start();
+
+// <!-- Stream page that holds all other information -->
+
+// if there is no stream selected then redirect to lobby page
+if(!(isset($_SESSION['streamRedir'])))
+{
+	echo '<meta http-equiv="refresh" content="0; URL=lobby">';
+	exit;
+}
+else
+{
+	?>
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<link rel="shortcut icon" type="image/png" href="WebsiteArt/favicon.png">
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="stream.css">
+		<link rel="stylesheet" href="emote.css">
+		<link rel="stylesheet" href="streamUI.css">
+		<link rel="stylesheet" href="gameLobby.css">
+		<script src="jquery.min.js" type="text/javascript"></script>
+		<title><?php echo $_SESSION['streamRedir']."'s stream"?></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
+	</head>
+	<!-- Includes all pages to create one page -->
+	<span class = "portrait">
+		<div class = "gameLobby">
+		<?php
+			include 'gameLobby.php';
+		?>
+		</div>
+	
+		<div class = "streamUI">
+		<?php
+			include 'streamUI.php';
+		?>
+		</div>
+	
+		<div class = "chat">
+		<?php
+			include 'chat.php';
+		?>
+		</div>
+	
+		<div class = "emoteTab" style="visibility: hidden;">
+		<?php
+			include 'emote.php';
+		?>
+		</div>
+	
+		<div class = "shopTab" style="visibility: hidden;">
+		<?php
+			include 'shop.php';
+		?>
+		</div>
+	</span>
+	<script>
+		// list of flavor text for when money comes in from Unity
+		var chatEnhance = ["bribing the tax man", "short selling",  "having questionable business ethics", "outsmarting Wall Street", "collecting on a predatory loan", "falsifying tax returns", "having excellent portfolio performance", "returns on reckless investments","...working hard for an honest living, I guess....", "compounding interest", "adding back depreciation", "ruining the game's balance", "getting sponsored by the supplier of our robots", "monopolizing the spaghetti industry", "award winning copypasta", "being a lovely audience member", "loving yourself as you are", "recycling", "taking a predatory loan"];
+		var portraitDiv = document.getElementsByClassName('portrait');
+		var messageDiv = document.getElementsByClassName('chat');
+		var emoteDiv = document.getElementsByClassName('emoteTab');
+		var shopDiv = document.getElementsByClassName('shopTab');
+		var streamUI = document.getElementsByClassName('streamUI');
+		var gameLobby = document.getElementsByClassName('gameLobby');
+		
+		// money received when chatting every X seconds 
+		var chatBonusMoney = 6;
+		
+		var currentlySelected = messageDiv[0];
+
+		// handles device orientation (Shows integration or shows full screen stream)
+		var handleOrientationChange = (function() {
+		var struct = function(){
+        		struct.parse();
+    		};
+    		struct.showPortraitView = function(){
+	 		currentlySelected.style.visibility = "visible";
+                        streamUI[0].style.visibility = "visible";
+                        gameLobby[0].classList.remove('landscapeStream');
+    		};
+    		struct.showLandscapeView = function(){
+	 		portraitDiv[0].style.visibility = "hidden";
+         		messageDiv[0].style.visibility = "hidden";
+        	 	emoteDiv[0].style.visibility = "hidden";
+         		shopDiv[0].style.visibility = "hidden";
+         		streamUI[0].style.visibility = "hidden";
+         		gameLobby[0].style.visibility = "visible";
+         		gameLobby[0].classList.add('landscapeStream');
+    		};
+    		struct.parse = function(){
+       			 switch(window.orientation){
+            		case 0:
+                    		//Portrait Orientation
+                    		this.showPortraitView();
+                		break;
+            		default:
+                  		// Landscape Orientation
+                   		this.lastOrientation = window.orientation;
+                   		this.showLandscapeView();
+                		break;
+        		}
+    		};
+    	struct.lastOrientation = window.orientation;
+    	return struct;
+	})();		
+	window.addEventListener("orientationchange", handleOrientationChange, false);
+		// reset the chat timer to receive money after chat
+		function resetChatTimer()
+		{
+			var chatTimerInterval = setInterval(function(){
+				if(parseInt(localStorage.getItem('chatTimer')) > 0)
+					window.localStorage['chatTimer'] = parseInt(localStorage.getItem('chatTimer')) - 1;
+				else
+					 clearInterval(chatTimerInterval);
+			}, 1000);
+		}
+		
+		// init the chat timer or set it and call the decrement function
+		window.onload = function() 
+		{
+			correctSizeForIphone();
+			if(localStorage.getItem('chatTimer') === null)
+			{
+				window.localStorage['chatTimer'] = 0;
+			}
+			else
+			{
+				resetChatTimer();
+			}
+		}
+		
+		// add money to mysql table and to local variable
+		function addMoney(amount)
+		{
+			var theMoney = document.getElementById('money');
+			var intMoney = theMoney.textContent;
+			var intMoney = parseInt(intMoney.replace(/\D+/g, ''), 10);
+			
+			intMoney += parseInt(amount);
+			
+			$.ajax({
+				type: 'POST',
+				url: 'updateMoney.php',
+				data: 
+				{
+					updatedMoney:intMoney
+				},
+				success: function(data) {
+					theMoney.textContent = "$ " + intMoney + "k";
+					moneyAnimation(amount, true);
+				}
+			});
+		}
+		
+		// check if chat bonus should be reset
+		function checkChatBonus()
+		{
+			if(localStorage.getItem('chatTimer') == 0)
+			{
+				var chatMoneyToAdd = 4;
+				addMoney(chatMoneyToAdd);
+				writeNotificationToScreen("You gained $" + chatMoneyToAdd + "k for chatting. Keep it up!", 2);
+				window.localStorage['chatTimer'] = 15;
+				resetChatTimer();
+			}
+		}
+	</script>
+	
+	<script type="text/javascript">
+	var streamLobbyReconnect = 0;
+	jQuery(startStreamLobby = function(){
+			// WebSocket connection attempt
+			var websocket_server = new WebSocket("ws://13.71.165.236:8080/");
+			
+			websocket_server.onopen = function(e) {
+
+				// determines if the connection is a reconnection or not to reset
+				// variables
+				if(window.streamLobbyReconnect)
+				{
+						window.clearInterval(window.streamLobbyReconnect)
+						window.streamLobbyReconnect = 0;
+				}
+				
+				// sends initial connection
+				websocket_server.send(
+					JSON.stringify({
+						'type':'socket',
+						'user_id': <?php echo "'{$_SESSION['username']}'"; ?>,
+						'streamer_name': <?php echo "'{$_SESSION['streamRedir']}'"; ?>
+					})
+				
+				);
+
+				 // sends subscription data as well
+				 websocket_server.send(
+					JSON.stringify({
+							'type':'subscribe',
+							'user_id': <?php echo "'{$_SESSION['username']}'"; ?>,
+							'channel': <?php echo "'{$_SESSION['streamRedir']}'"; ?>
+					})
+				);
+				
+				// loads emote and shop data
+				onloadEmoteData();
+				$.onloadShopData();
+			};
+
+			// was going to do reconnection, but makes more sense to kick them to lobby
+			websocket_server.onclose = function(e){
+				 //updateTableMoney();
+				 $(location).attr('href', 'http://descentofchampions.com/lobby');
+				
+			};			
+
+			// if an error occurs, redirect to lobby
+			websocket_server.onerror = function(e) {
+				$(location).attr('href', 'http://descentofchampions.com/lobby');
+				
+			}
+			
+			// handle received data
+			websocket_server.onmessage = function(e)
+			{
+				// decode json data
+				var json = JSON.parse(e.data);
+				switch(json.type) {
+					case 'chat':
+						// construct the message
+						var newMessage = "<span>"+json.msg+"</span><br>";
+						
+						// append the new message
+						$("#container > #result-wrapper > #result > .chats").append(newMessage);
+						 var out = document.getElementById('result');
+						 
+						 // scroll down if they are close enough to the bottom
+						 if(out.scrollHeight - out.scrollTop < 400)
+						 	out.scrollTop = out.scrollHeight;
+						 	
+						break;
+					case 'shopData':
+						// update shop data on load
+						serverUpdateContribution(json.buttonID, json.current);
+						break;
+					case 'loadShopData':
+						var buttonInfo = json.buttonData;
+						
+						// hard-coding 9 as that's the max buttons we have currently
+						for(var x = 1; x < 10; x++)
+						{
+							if(buttonInfo && buttonInfo[x] !== null)
+							{
+								// if the button has information, update it
+								if(!(buttonInfo[x] === undefined) && buttonInfo[x].totalAmount != 0)
+								{
+									updateShopButtonData(x, buttonInfo[x].totalAmount, buttonInfo[x].currentAmount)
+								}
+							}
+						}
+						
+						break;
+					case 'roundEndMoneyBonus':
+						// give the player's their passive income from Unity
+						var cashAmount = json.amount;
+						addMoney(cashAmount);
+						writeNotificationToScreen("You gained $" + cashAmount + "k for " + chatEnhance[Math.floor((Math.random() * chatEnhance.length) + 0)] + ". Keep it up!", 2);
+						break;
+					case 'closing':
+						$(location).attr('href', 'http://descentofchampions.com/lobby');
+						localStorage.setItem('doc_displayErrorMessage', 'Streamer has quit the game. The lobby has been closed. Please chose another game to watch.');
+						break;
+				}
+			}
+			
+			// submit button hit on form, attempt to send message
+			$("#container > .theForm").submit(function(e)
+			{
+				var chat_msg = $("#container > .theForm > #form-container > .form-text > #comment").val();
+					// do NOT send blank message spam
+					if(!chat_msg.replace(/\s/g, '').length)
+						return;
+					websocket_server.send(
+						JSON.stringify({
+							'type':'chat',
+							'user_id': <?php echo "'{$_SESSION['username']}'"; ?>,
+							'chat_msg':chat_msg
+						})
+					);
+					$("#container > .theForm > #form-container > .form-text > #comment").val('');
+					
+					checkChatBonus();
+					
+					// scrolls down since you sent a message
+					 var out = document.getElementById('result');
+					 out.scrollTop = out.scrollHeight;
+			});
+			
+			// enter key hit in form, attempt to send message
+			$("#container > .theForm > #form-container > .form-text > #comment").on('keyup',function(e){
+				if(e.keyCode==13 && !e.shiftKey)
+				{
+					var chat_msg = $(this).val();
+
+					// do NOT send blank message spam
+					if(!chat_msg.replace(/\s/g, '').length)
+						return;					
+
+					websocket_server.send(
+						JSON.stringify({
+							'type':'chat',
+							'user_id': <?php echo "'{$_SESSION['username']}'"; ?>,
+							'chat_msg':chat_msg
+						})
+					);
+					$(this).val('');
+					
+					checkChatBonus();
+					
+					// scrolls down since you sent a message
+					 var out = document.getElementById('result');
+					 out.scrollTop = out.scrollHeight;
+				}
+			});
+			
+			// send contribution data to server
+			$.contributeToShopItem = function(totalCost, buttonID)
+			{
+				// send update to shop contribution
+				websocket_server.send(
+					JSON.stringify({
+						'type':'contribution',
+						'lobby': <?php echo "'{$_SESSION['streamRedir']}'"; ?> + "shop",
+						'user_id': <?php echo "'{$_SESSION['username']}'"; ?>,
+						'buttonID': buttonID,
+						'totalCost': totalCost
+					})
+				);
+			};
+			
+			// send emote purchase to server
+			$.buyEmoteEvent = function(emoteName)
+			{
+				// send emote the user bought to unity
+				websocket_server.send(
+					JSON.stringify({
+						'type':'emote',
+						'lobby': <?php echo "'{$_SESSION['streamRedir']}'"; ?>,
+						'user_id': <?php echo "'{$_SESSION['username']}'"; ?>,
+						'emoteName': emoteName
+					})
+				);
+			};
+			
+			// load shop data on load
+			$.onloadShopData = function()
+			{	
+				websocket_server.send(
+					JSON.stringify({
+						'type':'loadShopData',
+						'lobby': <?php echo "'{$_SESSION['streamRedir']}'"; ?> + "shop"
+					})
+				);
+			}
+		});
+	</script>
+	
+	<script>
+		// tab between various pages (message, emote, shop)
+		function toggleIcons(buttonPress)
+		{
+			var theHighlight = document.getElementById('highlight');
+			var messageDiv = document.getElementsByClassName('chat');
+			var emoteDiv = document.getElementsByClassName('emoteTab');
+			var shopDiv = document.getElementsByClassName('shopTab');
+			
+			switch(buttonPress)
+			{
+				// message 
+				case 0:
+					// enable the chat here, hide everything else
+					// move the highlight circle over message
+					theHighlight.style.left = "20%";
+					messageDiv[0].style.visibility = "visible";
+					emoteDiv[0].style.visibility = "hidden";
+					shopDiv[0].style.visibility = "hidden";
+					currentlySelected = messageDiv[0];
+					theHighlight.src = "WebsiteArt/MessageButtonSelect.png";
+					// initially set the icon to the chat logo
+					break;
+				// back
+				case 1:
+					// go back to the lobby page
+					window.location.replace("lobby");
+					// unset streamer variable here 
+					<?php unset($_SESSION['streamChat']); ?>
+					break;
+				// shop
+				case 2:
+					// enable the shop here, hide everything else
+					// move the highlight circle over shop
+					theHighlight.style.left = "35%";
+					messageDiv[0].style.visibility = "hidden";
+					emoteDiv[0].style.visibility = "hidden";
+					shopDiv[0].style.visibility = "visible";
+					currentlySelected = shopDiv[0];
+					theHighlight.src = "WebsiteArt/ShopButtonSelect.png";
+					break;
+				// emote
+				case 3:
+					// enable the emote here, hide everything else
+					// move the highlight circle over emote
+					theHighlight.style.left = "50%";
+					messageDiv[0].style.visibility = "hidden";
+					emoteDiv[0].style.visibility = "visible";
+					shopDiv[0].style.visibility = "hidden";
+					currentlySelected = emoteDiv[0];
+					theHighlight.src = "WebsiteArt/EmoteButtonSelect.png";
+					break;
+				default:
+					// error
+			}
+		}
+	</script>
+	</html>
+	<?php
+}
+?>

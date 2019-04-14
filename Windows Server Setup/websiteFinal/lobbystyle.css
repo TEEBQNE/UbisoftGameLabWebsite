@@ -1,0 +1,397 @@
+/* style for the lobby page */
+
+/* removes the hyperlink click box around circular divs */
+*::selection 
+{
+    background-color:transparent;
+}
+
+#backgroundImage
+{
+	margin: 0; padding: 0;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	z-index: -2;
+	position: absolute;
+	display: inline;
+	overflow: hidden;
+}
+
+#topHolder
+{
+	display: inline;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 650px;
+	width: 100%;
+	z-index: -1;
+}
+
+
+.fadeClass
+{
+        animation: fadeout 1.5s forwards;
+}
+
+@keyframes fadeout {
+        /* fades a div over time */
+        from {opacity: 1;}
+        to {opacity: 0;}
+}
+
+.popupText
+{
+    text-align: center;
+    display: inline-block;
+    position:absolute; 
+    width: 70vw;
+    word-wrap: break-word;
+    z-index:999;
+    background-color: red;
+    color: white;
+    top: 5vh;
+    left: 15%;
+    font-size: 4vh;
+}
+ 
+*::-moz-selection
+{
+    background-color:transparent;
+}
+
+*
+{        
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+  
+/* fixes a bug where iOS users cannot enter data into the text box */  
+input[type="text"], textarea, [contenteditable]
+{
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* sets the custom font artists wanted */
+@font-face {
+    font-family: "autumnregular";
+    src: url('http://descentofchampions.com/autumn__-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h2, span, p { 
+    font-family: "autumnregular";
+}
+
+#cover {
+	position: fixed; 
+	height: 100%; 
+	width: 100%; 
+	top:0; 
+	left: 0; 
+	background: #000; 
+	z-index:9999;
+	color: white;
+}
+
+/* TEST IF THIS IS NEEDED ANYMORE */
+input:focus
+{
+	/* adds a highlight when an input box is selected */
+	/*border-color:transparent!important;
+	outline:none;
+
+	background-color: purple;
+  	border: 3px solid #FFF;
+  	border-radius: 18px;
+  	box-shadow: 0 0 2px #888;
+  	height: 30px;
+  	width: 30px;*/
+}
+
+/* hides the scrollbar - -should we have it?*/
+html {
+  overflow:   scroll;
+  
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+img, a
+{	
+	/* makes images and links undraggable or un-highlightable */
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.hideThisDiv
+{
+	display:none;
+}
+
+#lobbyLandscapeBody
+{
+    position:relative;
+    margin:0 auto;
+    clear:left;
+    height:auto;
+    z-index: 0;
+    text-align:center;
+    color: red;
+    font-size: 6vh;
+    top: 20vh;
+}
+
+#helloMessage
+{
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 60px;
+	right: 10px;
+	color:black;
+}
+
+#headerBox
+{
+	background-color: gray;
+	height: 65px;
+	width: 100%;
+	top: 0;
+	position: absolute;
+	left: 0;
+	padding: 0;
+	margin: 0;
+}
+
+#deleteAccount, #changeName, #goToTutorial
+{
+	 display: inline;
+	 border-radius:30% 30% 30% 30%;
+	 width: 30px;
+	 height: 30px;
+	 margin: 0;
+	 padding: 0;
+}
+
+#emptyPicture, #deletePicture
+{
+	margin: 0;
+    padding: 0;
+	right: 20px;
+    border-radius: 50% 50% 50% 50%;
+    width: 50px;
+    height: 50px;
+	position: absolute;
+    top: 10px;
+}
+
+.settingsText
+{
+	display: inline;
+	font-size: 10px;
+    margin: 0;
+    padding: 0;
+	position: absolute;
+	top: 30px;
+	white-space: nowrap;
+	left: -10px;
+}
+
+#goToTutorialText
+{
+	left: 1px;
+}
+
+#changeNameBlock, #deleteAccountBlock, #goToTutorialBlock
+{
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 15px;
+}
+
+#changeNameBlock
+{
+	left: 35%;
+}
+
+#deleteAccountBlock
+{
+	left: 5%;
+}
+
+#goToTutorialBlock
+{
+	left: 60%;
+}
+
+/* sets the input image icon*/
+#myInput {
+  background-image: url('https://www.freeiconspng.com/uploads/search-icon-png-2.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  border-radius: 25px;
+}
+
+#myUL {
+  /* sets the max column size to 2 as specified by designers */
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
+  -moz-column-fill: balance;
+  column-fill: balance;
+  display:inline-block;
+}
+
+ul
+{
+	font-size: 0;
+	text-align: center;
+}
+
+#myUL li #userPhoto{
+  /* makes the lobby elements appear to be centered evenly */
+  height: 35vw;
+  width: 35vw;
+  line-height: 25vw;
+  font-size: 20vw;
+  margin-right: -4px;
+  position: relative;
+  border: 4.5px solid #2A2A2A;
+  box-shadow: 0 0 0 1.5px #BBFDB6, 0 0 0 7px #43D558;
+}
+
+li
+{
+	/* top right bottom left*/
+	 padding: 5vw 8vw 0vw 7vw
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0px; 
+}
+
+.container #userPhoto{
+    vertical-align: bottom;
+    max-width: 100%;
+    border-radius:50% 50% 50% 50%;
+}
+
+.container li
+{
+	  display: inline-block;
+}
+
+.username {
+    position: relative;
+    top: 0;
+    bottom: 20;
+    left: 0;
+    right: 0;
+    font: 0/0 a;
+}
+
+.viewerCount
+{
+	position: relative;
+    top: -12px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font: 0/0 a;
+    color:black;
+    
+  display:inline-block;
+}
+
+.viewerCountPic
+{
+	margin-top: 10px;
+	width: 3vh;
+	height: auto;
+	
+  	display:inline-block;
+}
+
+.username:before, viewerCount:before {
+    content: ' ';
+    height: 100%;
+    vertical-align: middle;   
+}
+
+.username
+{
+	top: -10px;
+}
+
+.username a, .viewerCount p{
+	/* positions the name and viewer count text relative to the user image */
+    font: 16px/1 Arial, sans-serif;
+    display: inline-block;
+    vertical-align: middle;
+    text-align:center;
+    width: 100%;
+    padding: 1% 0;
+    text-decoration: none; 
+}
+
+.username a
+{
+	font-weight: bold;
+}
+
+.username a:visited
+{
+	color:black;
+}
+
+.username a:hover
+{
+	color:orange;
+}
+
+.username a:link
+{
+	color:black;
+}
+
+.userPicture:focus
+{
+	outline: none;
+	outline: 0;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

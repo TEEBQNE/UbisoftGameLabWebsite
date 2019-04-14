@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+iframe {
+    width: 500px;
+    height: 500px;
+}
+iframe.fullScreen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@media only screen and (max-width: 1024px){
+  body{
+    padding-bottom: 60px;
+  }
+}
+</style>
+
+<script>
+
+var isLandscape = false;
+
+// check outterwidth and outterheight
+window.addEventListener("orientationchange", function() {
+	// Announce the new orientation number
+	if(screen.orientation.angle == 0)
+	{
+		// portrait
+		isLandscape = false;
+		document.getElementsByTagName("iframe")[0].classList.remove("fullScreen");
+		//('iframe')[0].webkitExitFullScreen();
+		//document.body.webkitExitFullScreen();
+    	//var elem = document.body;
+    	//requestFullScreen(elem);
+	}
+	else
+	{
+		// landscape
+		isLandscape = true;
+		document.getElementsByTagName("iframe")[0].className = "fullScreen";
+    	var elem = document.body;
+    	requestFullScreen(elem);
+	}
+}, false);
+
+
+function requestFullScreen(element) {
+    // Supports most browsers and their versions.
+   /* var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullscreen;
+
+    if (requestMethod) { // Native full screen.
+        requestMethod.call(element);
+    } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+        var wscript = new ActiveXObject("WScript.Shell");
+        if (wscript !== null) {
+            wscript.SendKeys("{F11}");
+        }
+    }*/
+    window.scrollTo(0,1);
+}
+
+$(function() {
+    $("body").click(function() {
+    	document.getElementsByTagName("iframe")[0].className = "fullScreen";
+    	var elem = document.body;
+    	requestFullScreen(elem);
+    	var lockFunction =  window.screen.orientation.lock;
+if (lockFunction.call(window.screen.orientation, 'landscape')) {
+           console.log('Orientation locked')
+        } else {
+            console.error('There was a problem in locking the orientation')
+        }
+    });
+});
+
+
+$("body").click(function(){
+	console.log("test");
+    document.getElementsByTagName("iframe")[0].className = "fullScreen";
+    var elem = document.body;
+    requestFullScreen(elem);
+})
+
+
+
+</script>
+
+</head>
+
+<body>
+<div id="content">
+    <iframe src="localhost/iframeTest/index.php" 
+      allowtransparency="true" frameborder="0" scrolling="no" 
+      class="wistia_embed" name="wistia_embed" allowfullscreen 
+      mozallowfullscreen webkitallowfullscreen oallowfullscreen 
+       msallowfullscreen width="100%" height="100%"></iframe>
+</div>
+
+
+<!--<button onclick="makeFullScreen()">Make Full Screen</button>-->
+</body>
+
+
+</html>

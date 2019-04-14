@@ -1,0 +1,99 @@
+/* style for the twitch video for the stream page */
+
+/* makes the iframe fit to the size of the screen*/
+iframe {
+  border: 0;
+  height: 35%;
+  width: 100%;
+  position:fixed;
+  top: 0px;
+  left: 0px;
+}
+
+.holder
+{
+	height: 35%;
+}
+
+.landscapeStream iframe
+{
+	height: 100%;
+}
+
+#notificationHolder, #rotatePhoneNotification
+{
+	width: 100vw;
+	display: inline-block;
+	text-align: center;
+	vertical-align: center;
+	user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+#rotatePhoneNotification
+{
+    font-size: 150%;
+    display: inline-block;
+    position:absolute; 
+    width: 70vw;
+    word-wrap: break-word;
+    z-index:999;
+    background-color: white;
+    color: black;
+    top: 5vh;
+    left: 15%;
+}
+
+.notificationText
+{
+    display: inline-block;
+    position:absolute; 
+    width: 70vw;
+    word-wrap: break-word;
+    z-index:999;
+    background-color: blue;
+    color: white;
+    top: 5vh;
+    left: 15%;
+}
+
+.moneyNotificationText
+{
+	/* makes the text box dynamically scale and fit to text size based on width */
+    display: inline-block;
+    position:absolute; 
+    width: 70vw;
+    word-wrap: break-word;
+    z-index:999;
+    background-color: green;
+    color: white;
+    top: 5vh;
+    left: 15%;
+}
+
+.errorNotificationText
+{
+    display: inline-block;
+    position:absolute; 
+    width: 70vw;
+    word-wrap: break-word;
+    z-index:999;
+    background-color: red;
+    color: white;
+    top: 5vh;
+    left: 15%;
+}
+
+.fadeClass
+{
+	animation: fadeout 1.5s forwards;
+}
+
+@keyframes fadeout {
+	/* fades a div over time */
+	from {opacity: 1;}
+  	to {opacity: 0;}
+}

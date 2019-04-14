@@ -1,0 +1,38 @@
+/* style for stream lobby */
+/* determines overall page layout */
+
+html, body 
+{
+	margin: 0; 
+	height: 100%; 
+	overflow: hidden;
+}
+
+input, input:before, input:after {
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+}
+
+.gameLobby
+{
+        height: 35%;
+}
+
+.streamUI
+{
+        height: 5%;
+        background-color:gray;
+}
+
+.chat
+{
+        height: 60%;
+}
+
+.emoteTab
+{
+        height: 60%;
+}

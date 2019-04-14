@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{98D107EF-CA5F-290C-CAC1-F92DFF21B2BD}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ChatManager.cs">
+    <Files>
+      <File FileName="Assets/Scripts/ChatManager.cs" Line="236" Column="13" />
+      <File FileName="Assets/test.cs" Line="16" Column="9" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

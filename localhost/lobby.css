@@ -1,0 +1,228 @@
+#cover {
+	position: fixed; 
+	height: 100%; 
+	width: 100%; 
+	top:0; 
+	left: 0; 
+	background: #000; 
+	z-index:9999;
+	color: white;
+}
+
+/* hides the scrollbar - -should we have it?*/
+html {
+  overflow:   scroll;
+  
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#helloMessage
+{
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 60px;
+	right: 10px;
+	color:black;
+}
+
+#headerBox
+{
+	background-color: gray;
+	
+	/* need a better height attribute*/
+	height: 65px;
+	width: 100%;
+	top: 0;
+	position: absolute;
+	left: 0;
+	padding: 0;
+	margin: 0;
+}
+
+#emptyPicture, #deletePicture, #deleteAccount, #changeName
+{
+	 border-radius:50% 50% 50% 50%;
+	 width: 50px;
+	 height: 50px;
+	 margin: 0;
+	 padding: 0;
+	 position: absolute;
+	 top: 10px;
+}
+
+#emptyPicture, #deletePicture
+{
+	 right: 20px;
+}
+
+#deleteAccount
+{
+	left: 20px;
+}
+ 
+#changeName
+{
+	left: 150px;
+}
+
+#myInput {
+  background-image: url('https://www.freeiconspng.com/uploads/search-icon-png-2.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  border-radius: 25px;
+}
+
+.hideThisDiv
+{
+	display: none;
+}
+
+#myUL {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
+  -moz-column-fill: balance;
+  column-fill: balance;
+  display:inline-block;
+}
+
+ul
+{
+	font-size: 0;
+	text-align: center;
+}
+
+#myUL li #userPhoto{
+  height: 34vw;
+  width: 34vw;
+  line-height: 25vw;
+  font-size: 20vw;
+  margin-right: -4px;
+  position: relative;
+  border: 4.5px solid #2A2A2A;
+  box-shadow: 0 0 0 1.5px #D7B4FF, 0 0 0 7px #7D34DB;
+}
+
+
+#userPhotoOutline
+{
+	display: inline-block;
+}
+
+li
+{
+	/* top right bottom left*/
+	 padding: 5vw 8vw 0vw 7vw
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0px; 
+}
+
+.container #userPhoto, .container #userPhotoOutline{
+    vertical-align: bottom;
+    max-width: 100%;
+    border-radius:50% 50% 50% 50%;
+}
+
+.container li
+{
+	  display: inline-block;
+}
+
+.username {
+    position: relative;
+    top: 0;
+    bottom: 20;
+    left: 0;
+    right: 0;
+    font: 0/0 a;
+}
+
+.viewerCount
+{
+	position: relative;
+    top: -10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font: 0/0 a;
+    color:gray;
+    
+  display:inline-block;
+}
+
+.viewerCountPic
+{
+	width: 3vh;
+	height: auto;
+	margin-top: 10px;
+  	display:inline-block;
+}
+
+.username:before, viewerCount:before {
+    content: ' ';
+    height: 100%;
+    vertical-align: middle;   
+}
+
+.username a, .viewerCount p{
+    font: 16px/1 Arial, sans-serif;
+    display: inline-block;
+    vertical-align: middle;
+    text-align:center;
+    width: 100%;
+    padding: 1% 0;
+    text-decoration: none; 
+}
+
+.username
+{
+	top: -10px;
+}
+
+.username a
+{
+	font-weight: bold;
+}
+
+.username a:visited
+{
+	color:black;
+}
+
+.username a:hover
+{
+	color:orange;
+}
+
+.username a:link
+{
+	color:black;
+}
+
+.userPicture:focus
+{
+	outline: none;
+	outline: 0;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

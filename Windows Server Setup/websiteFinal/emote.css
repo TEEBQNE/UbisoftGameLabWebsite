@@ -1,0 +1,517 @@
+/* style for both cat and emote portion of the stream page */
+
+#buyableButton
+{
+	margin: auto;
+  	width: 100%;
+	color: black;
+	
+	/*height: 10.8%;*/
+	height: 6vh;
+	position: absolute;
+	text-align: right;
+	margin-left: 0px;
+	z-index: 0;
+	color: red;
+	font-size: 2vh;
+	top: 9.4%;
+	animation: pulsate 1s forwards;
+	animation-iteration-count:infinite;
+}
+
+@keyframes pulsate{
+	0%
+	{
+		filter: brightness(150%);
+	}
+	
+	50%
+	{
+		filter: brightness(30%);
+	}
+	
+	100%
+	{
+		filter: brightness(150%);
+	}
+}
+
+.wrapper
+{
+	background-image: url("WebsiteArt/buyableBackground.png");
+	background-position: top; /* Center the image */
+  	background-repeat: no-repeat; /* Do not repeat the image */
+  	background-size: 100% 100%;
+}
+
+/*html, body
+{
+ 	margin: 0; 
+        height: 100%; 
+        overflow: hidden;
+        position: fixed;
+}
+
+*
+{
+        overflow-x: hidden; 
+        overflow-y: auto;
+}*/
+
+*
+{      
+    /* disables the annoying hyperlink box around elements when held or clicked */  
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+#buttonText
+{
+	margin: auto;
+  	width: 50%;
+	color: black;
+	border-radius: 25px;
+	height: 3vh;
+	position: absolute;
+	text-align: right;
+	margin-left: 30px;
+	z-index: 100;
+	font-size: 2vh;
+	top: 7vh;
+
+}
+
+input:disabled 
+{
+	/* Forces all disabled buttons to appear the same */
+	/* iOS restyling is overriden here */
+    	background: #F5F5F5;
+    	color : #C3C3C3;
+    	cursor:none;
+    	pointer-events: none;
+	opacity: 0.8;
+  	filter: blur(1px);
+}
+
+*
+{
+	margin:0px; 
+	padding:0px;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+#myUL {
+   /* Makes the list sort by columns of 3 */
+	list-style-type: none;
+  	padding: 0;
+  	-webkit-column-count: 3; 
+  	-moz-column-count: 3;
+  	column-count: 3;
+  	-moz-column-fill: balance;
+  	column-fill: balance;
+  	margin-right: auto; 
+  	margin-left: auto;
+}
+
+button{
+/* Disables the button selection when pressing for buttons */
+/* Makes it so that iOS users do not double zoom when mashing buttons */
+-webkit-touch-callout: none; 
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+	touch-action: manipulation;
+}
+
+body
+{
+	margin: 0 auto;
+}
+
+#headerText
+{
+	padding: 1vh 0vh 4vh 0vh;
+	color: white;
+	font-size: 2vh;
+	display: inline;
+}
+
+#headerText2
+{
+	padding: 0.3vh 0vh 5vh 0vh;
+	color: white;
+	font-size: 1.5vh;
+}
+
+#theText
+{
+	text-align: center;
+	margin-top: 1vh;
+}
+
+#line
+{
+	/* Black divider line */
+	left: 2.5%;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	height: 0.25%;
+	top: 12%;
+	width: 95%;
+	background-color:gray;
+}
+
+.wrapper
+{
+	/* Emote / Shop wrapper */
+	width:100%; 
+	height:60%; 
+	position:fixed; 
+	bottom:0%; 
+	background-color: lightgray;
+}
+
+#interactButton, #emoteInteractButton
+{
+	position: absolute;
+	bottom: 80%;
+	width: 95%;
+	height: 6.5vh;
+	left: 2.5%;
+	font-size: 2vh;
+	max-font-size: 1vh;
+	background-color: transparent;
+	padding: 0;
+	border: none;
+	background: none;
+	outline: none;
+	outline: 0;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+.container input{
+    vertical-align: bottom;
+    max-width: 100%;
+    border-radius: 25px;
+}
+
+#emoteImg
+{
+	display: inline-block;
+	position: relative;
+}
+
+.thePicture
+{
+	border:3px solid;
+	border-color: rgb(0, 218, 25);
+    border-radius: 500px;
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
+    box-sizing: border-box;
+}
+
+.priceTag
+{
+	float: right;
+	background-color: yellow;
+	color: black;
+	border-radius: 25px;
+	height: 3vh;
+	width: 5vh;
+	position: absolute;
+	z-index: 100;
+	display: inline-block;
+	font-size: 1.5vh;
+	top: 0px;
+   	right: -1vh;
+}
+
+.priceTag p
+{
+	/* Positions center regardless the size of text */
+	-webkit-transform: translate(0%, 30%);
+	-moz-transform: translate(0%, 30%);
+	transform: translate(0%, 30%);
+    position: relative;
+    pointer-events: none;
+}
+
+.container li
+{
+	  display: block;
+	  position: relative;
+	  
+}
+
+.userPicture input
+{
+	/* Makes the buttons circles */
+	 border-radius:50% 50% 50% 50%;
+	 background-color:white;
+	
+}
+
+.timers
+{
+	/* Positions center regardless the size of text */
+	color: yellow;
+	z-index: 100;
+	font-size: 3vh;
+	left:50%;
+   	top:50%;
+   	-webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+   	transform: translate(-50%, -50%);
+    position: absolute;
+    pointer-events: none;
+}	
+
+#interactButton:focus
+{
+	outline: none;
+	outline: 0;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+#myUL li input{
+  height: 9vh;
+  width: 9vh;
+  position: relative;
+}
+
+.container
+{
+	background-color: black;
+	border: solid gray;
+	border-width: 1px 1px;
+	padding: 1vh 1.5vh 5.8vh 1.5vh;
+}
+
+#myUL
+{
+	margin-top: 7.9vh;
+	width: 80%;
+}
+
+ul
+{
+	font-size: 0;
+	text-align: center;
+}
+
+.emoteId
+{
+	position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font: 0/0 a;
+    color:gray;
+}
+
+.emoteId p
+{
+	color: white;
+}
+
+.emoteId:before{
+    content: ' ';
+}
+
+br
+{
+	line-height: 10px;
+}
+
+.emoteId p {
+    font: 16px/1 Arial, sans-serif;
+    font-size: 1.25vh;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0%;
+    margin: auto;
+    text-decoration: none; 
+}
+
+.container input:focus
+{
+	outline: none;
+	outline: 0;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input:focus
+{
+	outline: none;
+	outline: 0;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.contributed
+{
+	/* fix this alignment to actually be centered (don't use absolute use relative)*/
+	color: lightgreen;
+	/* uncomment this to show current $ - - designers did not want this shown*/
+	/*z-index: 100;*/
+	font-size: 3vh;
+	left:50%;
+   	top:50%;
+   	/* center the text in the middle regardless of size */
+    -webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    pointer-events: none;
+}
+
+.contributed p
+{
+	display: none;
+}
+
+.cooldown, .fillup{   
+    position:relative;
+    border-radius:50%;
+    overflow:hidden;
+    width:9vh;
+    height: 100%;
+    text-align:center;
+    color:#fff;
+    z-index:100;
+}
+
+.fillup
+{
+  /* flip the animation to appear to fill up instead of go down */
+ -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+}
+
+p
+{
+	-webkit-user-select: none; /* Safari */        
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* IE10+/Edge */
+user-select: none; /* Standard */
+pointer-events: none;
+}
+
+.cooldown span{
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    z-index:100;
+    overflow: visible;
+}
+
+ .fillup span
+ {
+ 	background:rgba(133,187,101,0.8);
+ 	position:absolute;
+    top:0; left:0;
+    width:100%; height: 0%;
+    z-index:100;
+    overflow: visible;
+ }	
+
+.container .cooldown, .container .fillup
+{
+	position: absolute;
+	display:inline-block;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.emoteCD1, .emoteCD2, .emoteCD3, .emoteCD4, .emoteCD5, .emoteCD6, .emoteCD7, .emoteCD8, .emoteCD9
+{
+	/* initially had varying cooldowns for each emote - - designers wanted it to be single cooldown */
+	
+   background:rgba(255,0,0,0.5);
+  -webkit-animation: test 5s linear;
+}
+
+.test2
+{
+   background:rgba(255,200,0,0.5);
+  -webkit-animation: test2 10s linear;
+}
+
+.emoteRefresh
+{
+   background:rgba(255,0,0,0.5);
+}
+
+.timeout
+{
+	visibility: hidden;
+}
+
+@-webkit-keyframes  test{
+	/* moves from full to empty */
+    from { height: 100%; }
+    to { height: 0%; }
+}
+
+@-webkit-keyframes  test2{
+	/* moves from empty to full */
+    from { height: 0%; }
+    to { height: 100%; }
+}
+
+.decreaseMoney {
+  animation: floatdown 2.5s forwards;
+}
+
+.increaseMoney{
+   animation: floatup 2.5s forwards;
+}
+
+.increaseMoney, .decreaseMoney
+{
+   display: inline-block;
+   position: absolute;
+   right: 0;
+   font-size: 2.5vh;
+}
+
+@keyframes floatdown {
+  /* moves the div downward while fading it */
+  from {transform: translateY(0); color:rgba(255,0,0,1.0);}
+  to {transform: translateY(4vh);
+  color:rgba(255,0,0,0.0);}
+}
+
+@keyframes floatup {
+   /* moves the div upward while fading it */
+  from {transform: translateY(0); color:rgba(0,255,0,1.0);}
+  to {transform: translateY(-4vh);
+  color:rgba(0,255,0,0.0);}
+}
+
+#recentItemPurchase
+{
+	text-align: center;
+	justify-content: center:
+	position: absolute;
+	font-size: 2.5vh;
+	color: lightgreen;
+}
+
+#recentEmotePurchase
+{
+	text-align: center;
+	justify-content: center:
+	position: absolute;
+	font-size: 2.5vh;
+	color: white;
+}
